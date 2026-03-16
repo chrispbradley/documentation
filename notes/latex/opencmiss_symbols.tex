@@ -9,6 +9,15 @@
 % General
 %
 
+\newcommand{\surfacesymbol}{\ensuremath{ %
+    \Gamma %
+}} % surface symbol
+\newcommand{\domainsymbol}{\ensuremath{ %
+    \Omega %
+}} % domain symbol
+\newcommand{\normalsymbol}{n} % normal symbol
+\newcommand{\normal}{\vectr{\normalsymbol}} % normal
+\newcommand{\normalvector}{\normal} % normal
 \newcommand{\gravitysymbol}{\ensuremath{ %
     a %
 }} % gravity symbol e.g., \gravitysymbol => a
@@ -28,19 +37,31 @@
     J %
 }} % current density symbol e.g., \currentdensitysymbol => J
 \newcommand{\currentdensityvector}{\ensuremath{ %
-    \vectr{J} %
+    \vectr{\currentdensitysymbol} %
 }} % current density vector e.g., \currentdensityvector => J
+\newcommand{\currentvolumedensitysymbol}{\ensuremath{ %
+    \currentsymbol^{V} %
+}} % current per unit volume e.g., \currentvolumedensitry => I^{V}
+\newcommand{\currentdensitynormalfluxsymbol}{\ensuremath{ %
+    q %
+}} % current density normal flux e.g., \currentdensitynormalflux => q
 \newcommand{\potentialsymbol}{\ensuremath{ %
     \phi %
 }} % potential symbol e.g., \potentialsymbol => V
-\newcommand{\conductivitytensorsymbol}{\ensuremath{ %
+\newcommand{\conductivitysymbol}{\ensuremath{ %
     \sigma %
+}} % conductivitysymbol e.g., \conductivitysymbol => \sigma
+\newcommand{\conductivitytensorsymbol}{\ensuremath{ %
+    \conductivitysymbol %
 }} % conductivity tensor symbol e.g., \conductivitytensorsymbol => \sigma
 \newcommand{\conductivitytensor}{\ensuremath{ %
     \tensortwo{\conductivitytensorsymbol} %
 }} % conductivity tensor e.g., \conductivitytensor => \sigma
+\newcommand{\diffusivitysymbol}{\ensuremath{ %
+    \conductivitysymbol %
+}} % diffusivity symbol
 \newcommand{\diffusivitytensorsymbol}{\ensuremath{ %
-    \sigma %
+    \diffusivitysymbol %
 }} % diffusivity tensor symbol e.g., \diffusivitytensorsymbol => \sigma
 \newcommand{\diffusivitytensor}{\ensuremath{ %
     \tensortwo{\diffusivitytensorsymbol} %
@@ -84,6 +105,14 @@
 \newcommand{\Zetatwo}{\ensuremath{\Zeta^{2}}\xspace} % Zeta 2
 \newcommand{\Zetatwosq}{\ensuremath{{\Zeta^{2}}^{2}}\xspace} % (Zeta 2)^2
 \newcommand{\Zetatwocube}{\ensuremath{{\Zeta^{2}}^{3}}\xspace} % (Zeta 2)^3
+
+%
+% Chemistry
+%
+
+\newcommand{\avogardronumber}{\ensuremath{ %
+    N_{A} %
+}} % Avogardro's number => N_A
 
 %
 %
@@ -310,6 +339,17 @@
     \tensortwo{\spatialstructuraltensorsymbol}_{#1} %
 }} % Spatial structural tensor component e.g., \spatialstructuraltensorcomponent{1} => m_1
 
+%
+% Boundary Element Method
+
+\newcommand{\bempoint}{\ensuremath{ %
+    \coordinatevector%
+}} % BEM point e.g., \bempoint => x
+
+\newcommand{\bemsingularpoint}{\ensuremath{ %
+    \coordinatevector_{0}%
+}} % BEM singular point e.g., \bemsingularpoint => x_{0}
+
 
 %
 % Solid Mechanics
@@ -326,18 +366,34 @@
 \newcommand{\poissonsratiosymbol}{\ensuremath{ %
     \nu%
 }} % Poisson's ratio symbol e.g., \poissonsratiosymbol => \nu
+\newcommand{\poissonsratio}{\ensuremath{ %
+    \poissonsratiosymbol%
+}} % Poisson's ratio e.g., \posissonsratio => \nu
 \newcommand{\youngsmodulussymbol}{\ensuremath{ %
     E%
 }} % Young's modulus symbol e.g., \youngsmodulussymbol => E
+\newcommand{\youngsmodulus}{\ensuremath{ %
+    \youngsmodulussymbol %
+}} % Young's modulus e.g., \youngsmodulus => E
 \newcommand{\shearmodulussymbol}{\ensuremath{ %
     G%
 }} % Shear modulus symbol e.g., \shearmodulussymbol => G
+\newcommand{\shearmodulus}{\ensuremath{ %
+    \shearmodulussymbol %
+}} % Shear modulus e.g., \shearmodulus => G
 \newcommand{\bulkstrainmodulussymbol}{\ensuremath{ %
     K %
 }} % Bulk strain modulus symbol e.g., \bulkstrainmodulussymbol => K
+\newcommand{\bulkstrainmodulus}{\ensuremath{ %
+    \bulkstrainmodulussymbol %
+}} % Bulk strain modulus symbol e.g., \bulkstrainmodulus => K
 \newcommand{\soliddensitysymbol}{\ensuremath{ %
     \densitysymbol_{s} %
 }} % Solid density symbol e.g., \soliddensitysymbol => \rho_s
+\newcommand{\soliddensity}{\ensuremath{ %
+    \soliddensitysymbol %
+}} % Solid density e.g., \soliddensity => \rho_s
+
 
 
 % Deformation and strain
@@ -482,9 +538,15 @@
 \newcommand{\shearstrainsymbol}{\ensuremath{ %
     \gamma%
 }} % shear strain symbol e.g., \shearstrainsymbol => \gamma
+\newcommand{\shearstraintensor}{\ensurmath{ %
+    \tensortwo{\shearstrainsymbol} %
+}} % shear strain tensor e.g., \shearstraintensor => \gamma
 \newcommand{\shearstresssymbol}{\ensuremath{ %
     \tau%
 }} % shear stress symbol e.g., \shearstresssymbol => \tau
+\newcommand{\shearstresstensor}{\ensuremath{ %
+    \tensortwo{\shearstresssymbol} %
+}} % shear stress symbol e.g., \shearstresstensor => \tau
 \newcommand{\linearstresstensorsymbol}{\ensuremath{ %
     \sigma%
 }} % linear stress tensor symbol e.g., \linearstresstensorsymbol => \sigma
@@ -506,6 +568,9 @@
 \newcommand{\linearstrainenergysymbol}{\ensuremath{ %
     \varepsilon %
 }} % linear strain energy symbol e.g., \linearstrainenergysymbol => \varepsilon
+\newcommand{\linearstrainenergy}{\ensuremath{ %
+    \linearstrainenergysymbol %
+}} % linear strain energy e.g., \linearstrainenergy => \varepsilon
 
 %
 % Bioelectrics
@@ -520,15 +585,30 @@
 \newcommand{\transmembranevoltage}{\ensuremath{ %
     {\voltagesymbol}_{m} %
 }} % transmembrane voltage e.g., \transmembranevoltage => V_m
+\newcommand{\transmembranevoltagevector}{\ensuremath{ %
+    {\vect{\voltagesymbol}}_{m} %
+}} % transmembrane voltage vectore.g., \transmembranevoltagevector => V_m
 \newcommand{\cellstatevariablesymbol}{\ensuremath{ %
-    u %
+    s %
 }} % cell state variable symbol  e.g., \cellstatevariablesymbol => u
 \newcommand{\cellstatevariablevector}{\ensuremath{ %
-    \vectr{u} %
+    \vectr{\cellstatevariablesymbol} %
 }} % cell state variable vector  e.g., \cellstatevariablevector => u
+\newcommand{\cellrhsvariablesymbol}{\ensuremath{ %
+    f %
+}} % cell RHS variable symbol  e.g., \cellrhsvariablesymbol => f
+\newcommand{\cellrhsvariablevector}{\ensuremath{ %
+    \vectr{\cellrhsvariablesymbol} %
+}} % cell RHS variable vector  e.g., \cellrhsvariablevector => f
 \newcommand{\transmembranecurrent}{\ensuremath{ %
     {\currentsymbol}_{m} %
 }} % transmembrane current e.g., \transmembranecurrent => I_m
+\newcommand{\transmembranenormalflux}{\ensuremath{ %
+    {\currentdensitynormalfluxsymbol}_{m} %
+}} % transmembrane normal flux e.g., \transmembranenormalflux => q_m
+\newcommand{\transmembranenormalfluxvector}{\ensuremath{ %
+    {\vectr{\currentdensitynormalfluxsymbol}}_{m} %
+}} % transmembrane normal flux vector e.g., \transmembranenormalfluxvector => q_m
 \newcommand{\ioniccurrent}{\ensuremath{ %
     {\currentsymbol}_{\text{ion}} %
 }} % Ionic current e.g., \ioniccurrent => I_ion
@@ -538,27 +618,449 @@
 \newcommand{\intracellularpotential}{\ensuremath{ %
     {\potentialsymbol}_{i} %
 }} % intra-cellular potential e.g., \intracellularpotential => \phi_i
+\newcommand{\intracellularpotentialvector}{\ensuremath{ %
+    {\vect{\potentialsymbol}}_{i} %
+}} % intra-cellular potential e.g., \intracellularpotential => \phi_i
 \newcommand{\intracellularstimuluscurrent}{\ensuremath{ %
-    {\stimuluscurrent}_{i} %
+    {\currentsymbol}_{s_{i}} %
 }} % intra-cellular stimulus current e.g., \intracellularstimuluscurrent => {I_s}_i
+\newcommand{\intracellularstimuluscurrentvector}{\ensuremath{ %
+    {\vectr{\currentsymbol}}_{s_{i}} %
+}} % intra-cellular stimulus current vector e.g., \intracellularstimuluscurrentvector => {I_s}_i
 \newcommand{\intracellularcurrentdensityvector}{\ensuremath{ %
     {\currentdensityvector}_{i} %
 }} % intra-cellular current density vector e.g., \intracellularcurrentdensityvector => J_i
 \newcommand{\intracellularconductivitytensor}{\ensuremath{ %
     {\conductivitytensor}_{i} %
 }} % intra-cellular conductivity tensor e.g., \intracellularconductivitytensor => \sigma_i
+\newcommand{\intracellularnormalflux}{\ensuremath{ %
+    {\currentdensitynormalfluxsymbol}_{i} %
+}} % intra-cellular normal flux e.g., \intracellularnormalflux => q_i
+\newcommand{\intracellularnormalfluxvector}{\ensuremath{ %
+    {\vectr{\currentdensitynormalfluxsymbol}}_{i} %
+}} % intra-cellular normal flux vector e.g., \intracellularnormalfluxvectr => q_i
 \newcommand{\extracellularpotential}{\ensuremath{ %
     {\potentialsymbol}_{e} %
 }} % extra-cellular potential e.g., \extracellularpotential => \phi_e
+\newcommand{\extracellularpotentialvector}{\ensuremath{ %
+    {\vect{\potentialsymbol}}_{e} %
+}} % extra-cellular potential vector e.g., \extracellularpotentialvector => \phi_e
 \newcommand{\extracellularstimuluscurrent}{\ensuremath{ %
-    {\stimuluscurrent}_{e} %
+    {\currentsymbol}_{s_{e}} %
 }} % extra-cellular stimulus current e.g., \extracellularstimuluscurrent => {I_s}_e
+\newcommand{\extracellularstimuluscurrentvector}{\ensuremath{ %
+    {\vectr{\currentsymbol}}_{s_{e}} %
+}} % extra-cellular stimulus current vector e.g., \extracellularstimuluscurrentvector => {I_s}_e
 \newcommand{\extracellularcurrentdensityvector}{\ensuremath{ %
     {\currentdensityvector}_{e} %
 }} % extra-cellular current density vector e.g., \extracellularcurrentdensityvector => J_e
 \newcommand{\extracellularconductivitytensor}{\ensuremath{ %
     {\conductivitytensor}_{e} %
 }} % extra-cellular conductivity tensor e.g., \extracellularconductivitytensor => \sigma_e
+\newcommand{\extracellularnormalflux}{\ensuremath{ %
+    {\currentdensitynormalfluxsymbol}_{e} %
+}} % extra-cellular normal flux e.g., \extracellularnormalflux => q_e
+\newcommand{\extracellularnormalfluxvector}{\ensuremath{ %
+    {\vectr{\currentdensitynormalfluxsymbol}}_{e} %
+}} % extra-cellular normal flux e.g., \extracellularnormalflux => q_e
 \newcommand{\monodomainconductivitytensor}{\ensuremath{ %
     {\conductivitytensor}_{m} %
 }} % monodomain conductivity tensor e.g., \monodomainconductivitytensor => \sigma_m
+\newcommand{\sharpmonodomainconductivitytensor}{\ensuremath{ %
+    {\sharptensor{\conductivitytensorsymbol}}_{m} %
+}} % monodomain conductivity tensor e.g., \monodomainconductivitytensor => \sigma_m
+
+%
+% Electrocardiology
+%
+
+% Torso
+
+\newcommand{\torsosubscriptsymbol}{\ensuremath{ %
+    T %
+}} % Torso subscript symbol
+\newcommand{\torsosurfacesymbol}{\ensuremath{ %
+    \surfacesymbol_{\torsosubscriptsymbol} %
+}} % Torso surface symbol
+\newcommand{\torsosurface}{\ensuremath{ %
+    \torsosurfacesymbol %
+}} % Torso surface e.g. \torsosurface => \Gamma_T
+\newcommand{\torsodomainsymbol}{\ensuremath{ %
+    \domainsymbol_{\torsosubscriptsymbol} %
+}} % Torso domain symbol
+\newcommand{\torsodomain}{\ensuremath{ %
+    \torsodomainsymbol %
+}} % Torso domain e.g., \torsodomain => \Omega_T
+\newcommand{\torsonormalvector}{\ensuremath{ %
+    \normal_{\torsosubscriptsymbol} %
+}} % Torso normal vector e.g. \torsonormalvector => n_T
+\newcommand{\torsopotentialsymbol}{\ensuremath{ %
+    \potentialsymbol_{\torsosubscriptsymbol} %
+}} % Torso potential symbol
+\newcommand{\torsopotential}{\ensuremath{ %
+    \torsopotentialsymbol %
+}} % Torso potential e.g., \torsopotential => \phi_T
+\newcommand{\torsopotentialvector}{\ensuremath{ %
+    \vect{\potentialsymbol}_{\torsosubscript} %
+}} % Torso potential vector e.g., \torsopotentialvector => \phi_T
+\newcommand{\torsosurfacepotentialsymbol}{\ensuremath{ %
+    \potentialsymbol_{\torsosubscriptsymbol} %
+}} % Torso surface potential symbol
+\newcommand{\torsosurfacepotential}{\ensuremath{ %
+    \torsosurfacepotentialsymbol %
+}} % Torso surface potential e.g., \torsosurfacepotential => \phi_T
+\newcommand{\torsosurfacepositionsymbol}{\ensuremath{ %
+    z %
+}} % Torso surface position symbol
+\newcommand{\torsosurfacepositionvector}{\ensuremath{ %
+    \vectr{\torsosurfacepositionsymbol} %
+}} % Torso surface position vector
+\newcommand{\torsonormalflux}{\ensuremath{ %
+    {\currentdensitynormalfluxsymbol}_{\torsosubscriptsymbol} %
+}} % torso normal flux e.g., \torsonormalflux => q_T
+\newcommand{\torsonormalfluxvector}{\ensuremath{ %
+    {\vectr{\currentdensitynormalfluxsymbol}}_{\torsosubscriptsymbol} %
+}} % torso normal flux e.g., \torsonormalflux => q_T
+\newcommand{\torsoconductivitytensor}{\ensuremath{ %
+    \conductivitytensor_{\torsosubscriptsymbol} %
+}} % Torso conductivity tensor
+
+% Heart
+
+\newcommand{\heartsubscriptsymbol}{\ensuremath{ %
+    H %
+}} % Heart subscript symbol
+\newcommand{\heartsurfacesymbol}{\ensuremath{ %
+    \surfacesymbol_{\heartsubscriptsymbol} %
+}} % Heart surface symbol
+\newcommand{\heartsurface}{\ensuremath{ %
+    \heartsurfacesymbol %
+}} % Heart surface e.g., \heartsurface => \Gamma_H
+\newcommand{\innerheartsurfacesymbol}{\ensuremath{ %
+    \surfacesymbol_{\heartsubscriptsymbol_{i}} %
+}} % Inner heart surface symbol
+\newcommand{\innerheartsurface}{\ensuremath{ %
+    \innerheartsurfacesymbol %
+}} % Inner heart surface e.g., \innerheartsurface => \Gamma_H_i
+\newcommand{\outerheartsurfacesymbol}{\ensuremath{ %
+    \surfacesymbol_{\heartsubscriptsymbol_{o}} %
+}} % Outer heart surface symbol
+\newcommand{\outerheartsurface}{\ensuremath{ %
+    \outerheartsurfacesymbol %
+}} % Outer heart surface e.g. \outerheartsurface => \Gamma_H_o
+\newcommand{\heartdomainsymbol}{\ensuremath{ %
+    \domainsymbol_{\heartsubscriptsymbol} %
+}} % Heart domain symbol
+\newcommand{\heartdomain}{\ensuremath{ %
+    \heartdomainsymbol %
+}} % Heart domain e.g., \heartdomain => \Omega_H
+\newcommand{\innerheartnormalvector}{\ensuremath{ %
+    \normal_{\heartsubscriptsymbol_{i}} %
+}} % Inner heart normal vector e.g., \innerheartnormalvector => n_H_i
+\newcommand{\outerheartnormalvector}{\ensuremath{ %
+    \normal_{\heartsubscriptsymbol_{o}} %
+}} % Outer heart normal vector e.g., \outerheartnormalvector => n_H_o
+\newcommand{\heartsurfacepotentialsymbol}{\ensuremath{ %
+    \potentialsymbol_{\heartsubscriptsymbol} %
+}} % Heart surface potential symbol
+\newcommand{\heartsurfacepotential}{\ensuremath{ %
+    \heartsurfacepotentialsymbol %
+}} % Heart surface potential e.g., \heartsurfacepotential => \phi_H
+\newcommand{\heartsurfacepositionsymbol}{\ensuremath{ %
+    y %
+}} % Heart surface position symbol
+\newcommand{\heartsurfacepositionvector}{\ensuremath{ %
+    \vectr{\heartsurfacepositionsymbol} %
+}} % Heart surface position vector
+\newcommand{\heartconductivitytensor}{\ensuremath{ %
+    \conductivitytensor_{\heartsubscriptsymbol} %
+}} % Heart conductivity tensor
+
+% Lungs
+
+\newcommand{\lungsubscriptsymbol}{\ensuremath{ %
+    L %
+}} % Lung subscript symbol
+\newcommand{\lungsurfacesymbol}{\ensuremath{ %
+    \surfacesymbol_{\lungsubscriptsymbol} %
+}} % Lung surface symbol
+\newcommand{\lungsurface}{\ensuremath{ %
+    \lungsurfacesymbol % 
+}} % Lung surface e.g., \lungsurface => \Gamma_L
+\newcommand{\lungdomainsymbol}{\ensuremath{ %
+    \domainsymbol_{\lungsubscriptsymbol} %
+}} % Lung domain symbol
+\newcommand{\lungdomain}{\ensuremath{ %
+    \lungdomainsymbol %
+}} % Lung domain e.g., \lungdomain => \Omega_L
+\newcommand{\lungsurfacepotentialsymbol}{\ensuremath{ %
+    \potentialsymbol_{\lungsubscriptsymbol} %
+}} % Lung surface potential symbol
+\newcommand{\lungsurfacepotential}{\ensuremath{ %
+    \lungsurfacepotentialsymbol %
+}} % Lung surface potential e.g., \lungsurfacepotential => \phi_L
+\newcommand{\lungconductivitytensor}{\ensuremath{ %
+    \conductivitytensor_{\lungsubscriptsymbol} %
+}} % Lung conductivity tensor
+
+% Blood
+
+\newcommand{\bloodsubscriptsymbol}{\ensuremath{ %
+    B %
+}} % Blood subscript symbol
+\newcommand{\bloodsurfacesymbol}{\ensuremath{ %
+    \surfacesymbol_{\bloodsubscriptsymbol} %
+}} % Blood surface symbol
+\newcommand{\bloodsurface}{\ensuremath{ %
+    \bloodsurfacesymbol %
+}} % Blood surface e.g., \bloodsurface => \Gamma_B
+\newcommand{\blooddomainsymbol}{\ensuremath{ %
+    \domainsymbol_{\bloodsubscriptsymbol} %
+}} % Blood domain symbol
+\newcommand{\blooddomain}{\ensuremath{ %
+    \blooddomainsymbol %
+}} % Blood domain e.g., \blooddomain => \Omega_B
+\newcommand{\bloodpotentialsymbol}{\ensuremath{ %
+    \potentialsymbol_{\bloodsubscriptsymbol} %
+}} % Blood potential symbol
+\newcommand{\bloodpotential}{\ensuremath{ %
+    \bloodpotentialsymbol %
+}} % Blood potential e.g., \bloodpotential => \phi_B
+\newcommand{\bloodpotentialvector}{\ensuremath{ %
+    {\vectr{\potentialsymbol}}_{\bloodsubscriptsymbol} %
+}} % Blood potential e.g., \bloodpotential => \phi_B
+\newcommand{\bloodnormalflux}{\ensuremath{ %
+    {\currentdensitynormalfluxsymbol}_{\bloodsubscriptsymbol} %
+}} % Blood normal flux e.g., \bloodnormalflux => q_B
+\newcommand{\bloodnormalfluxvector}{\ensuremath{ %
+    {\vectr{\currentdensitynormalfluxsymbol}}_{\bloodsubscriptsymbol} %
+}} % Blood normal flux vector e.g., \bloodnormalfluxvector => q_B
+\newcommand{\bloodconductivitytensor}{\ensuremath{ %
+    \conductivitytensor_{\bloodsubscriptsymbol} %
+}} % Blood conductivity tensor
+
+% Transfer
+
+\newcommand{\transfermatrixsymbol}{\ensuremath{ %
+    T %
+}} % transfer matrix symbol
+\newcommand{\transfermatrix}{\ensuremath{ %
+    \matr{\transfermatrixsymbol} %
+}} % transfer matrix
+
+
+%
+% PBPK
+%
+
+\newcommand{\GA}{\ensuremath{ %
+    \mathrm{GA} %
+}} % Gestational age e.g., \GA => GA
+\newcommand{\PBPKGFRSymbol}{\ensuremath{ %
+    \mathrm{GFR} %
+}} % Glomerular filtration rate symbol e.g., \GFR => GFR
+\newcommand{\PBPKCLSymbol}{\ensuremath{ %
+    \mathrm{CL} %
+}} % Clearance rate symbol e.g., \PBPKCLSymbol => CL
+\newcommand{\PBPKPRSymbol}{\ensuremath{ %
+    \mathrm{PR} %
+}} % production rate symbol e.g., \PBPKPRSymbol => PR
+\newcommand{\PBPKBPRSymbol}{\ensuremath{ %
+    \mathrm{B:P} %
+}} % PBPK Blood:Plasma ratio symbol
+\newcommand{\PBPKRBCPRSymbol}{\ensuremath{ %
+    \mathrm{RBC:P} %
+}} % PBPK Red-Blood-Cell:Plasma ratio symbol
+\newcommand{\PBPKIPRSymbol}{\ensuremath{ %
+    \mathrm{I:P} %
+}} % PBPK Intersitial:Plasma ratio symbol
+\newcommand{\PBPKFractionSymbol}{\ensuremath{ %
+    f %
+}} % PBPK fraction symbol
+\newcommand{\PBPKHaematocritSymbol}{\ensuremath{ %
+    H %
+}} % PBPK haematocrit symbol
+\newcommand{\PBPKAmountSymbol}{\ensuremath{ %
+    A %
+}} % PBPK amount symbol
+\newcommand{\PBPKConcentrationSymbol}{\ensuremath{ %
+    C %
+}} % PBPK concentration symbol
+\newcommand{\PBPKVolumeSymbol}{\ensuremath{ %
+    V %
+}} % PBPK volume symbol
+\newcommand{\PBPKSurfaceSymbol}{\ensuremath{ %
+    S %
+}} % PBPK surface symbol
+\newcommand{\PBPKFlowSymbol}{\ensuremath{ %
+    Q %
+}} % PBPK flow symbol
+\newcommand{\PBPKDensitySymbol}{\ensuremath{ %
+    \densitysymbol %
+}} % PBPK density symbol
+\newcommand{\PBPKMassSymbol}{\ensuremath{ %
+    M %
+}} % PBPK mass symbol
+\newcommand{\PBPKRateSymbol}{\ensuremath{ %
+    R %
+}} % PBPK rate symbol
+\newcommand{\PBPKCvSymbol}{\ensuremath{ %
+    C_{v} %
+}} % PBPK Cv symbol
+\newcommand{\PBPKKpSymbol}{\ensuremath{ %
+    Kp %
+}} % PBPK Kp symbol
+\newcommand{\PBPKAmount}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKAmountSymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKAmountSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK amount function e.g., \PBPKAmount{m}{x}{t} => A^{m}_{x}(t)
+\newcommand{\PBPKConc}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKConcentrationSymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKConcentrationSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK concentration function e.g., \PBPKConc{m}{x}{t} => C^{m}_{x}(t)
+\newcommand{\PBPKConcUnbound}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKConcentrationSymbol^{#1}_{#2,u} %
+    }{ %
+     \fnof{\PBPKConcentrationSymbol^{#1}_{#2,u}}{#3} %
+    } %
+}} % PBPK unbound concentration function e.g., \PBPKConcUnbound{m}{x}{t} => C^{m}_{x,u}(t)
+\newcommand{\PBPKConcBound}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKConcentrationSymbol^{#1}_{#2,b} %
+    }{ %
+      \fnof{\PBPKConcentrationSymbol^{#1}_{#2,b}}{#3} %
+    } %
+}} % PBPK bound concentration function e.g., \PBPKConcBound{m}{x}{t} => C^{m}_{x,b}(t)
+\newcommand{\PBPKVolume}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKVolumeSymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKVolumeSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK volume function e.g., \PBPKVolume{m}{x}{t} => V^{m}_{x}(t)
+\newcommand{\PBPKSurface}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKSurfaceSymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKSurfaceSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK surface function e.g., \PBPKSurface{m}{x}{t} => V^{m}_{x}(t)
+\newcommand{\PBPKFlow}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKFlowSymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKFlowSymbol^{#1}_{#2}}{#3} %
+    }
+}} % PBPK flow function e.g., \PBPKFlow{m}{x}{t} => Q^{m}_{x}(t)
+\newcommand{\PBPKMass}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKMassSymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKMassSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK mass function e.g., \PBPKMass{m}{x}{t} => M^{m}_{x}(t)
+\newcommand{\PBPKDensity}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKDensitySymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKDensitySymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK density function e.g., \PBPKDensity{m}{x}{t} => \rho^{m}_{x}(t)
+\newcommand{\PBPKCv}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKConcentrationSymbol^{#1}_{v_{#2}} %
+    }{ %
+      \fnof{\PBPKConcentrationSymbol^{#1}_{v_{#2}}}{#3} %
+    } %
+}} % PBPK Cv function e.g., \PBPKCv{m}{x}{t} => C^{m}_{v_{x}}(t)
+\newcommand{\PBPKRate}[4]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \fnof{\PBPKRateSymbol^{#1}_{#2}}{#4} % 
+    }{ %
+      \fnof{\PBPKRateSymbol^{#1}_{#2_{#3}}}{#4} %
+    } %
+}} % PBPK rate function e.g., \PBPKRate{m}{in}{x}{t} => R^{m}_{in_{x}}(t)
+\newcommand{\PBPKHaematocrit}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKHaematocritSymbol^{#1}_{#2} %
+    }{ %
+      \fnof{\PBPKHaematocritSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK haematocrit function e.g., \PBPKHaematocrit{m}{x}{t} => H^{m}_{x}(t)
+\newcommand{\PBPKFraction}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKFractionSymbol^{#1}_{#2} % 
+    }{ %
+      \PBPKFractionSymbol^{#1}_{#2,#3} %
+    } %
+}} % PBPK fraction e.g., \PBPKFraction{m}{u}{p} => f^{m}_{u,p}
+\newcommand{\PBPKFracBound}[2]{\ensuremath{ %
+    \PBPKFraction{#1}{b}{#2} %
+}} % PBPK fraction bound e.g., \PBPKFracBound{m}{p} => f^{m}_{b,p}
+\newcommand{\PBPKFracUnbound}[2]{\ensuremath{ %
+    \PBPKFraction{#1}{u}{#2} %
+}} % PBPK fraction unbound e.g., \PBPKFracBound{m}{p} => f^{m}_{u,p}
+\newcommand{\PBPKGFR}[2]{\ensuremath{ %
+    \ifthenelse{\equal{#2}{}}{ %
+      \PBPKGFRSymbol^{#1} %
+    }{ %
+      \fnof{\PBPKGFRSymbol^{#1}}{#2} %
+    } %
+}} % PBPK GFR function e.g., \PBPKGFR{m}{t} => GFR^{m}(t)
+\newcommand{\PBPKfGFR}[2]{\ensuremath{ %
+    \ifthenelse{\equal{#2}{}}{ %
+      \PBPKFractionSymbol^{#1}_{\PBPKGFRSymbol} %
+    }{ %
+      \fnof{\PBPKFractionSymbol^{#1}_{\PBPKGFRSymbol}}{#2} %
+    } %
+}} % PBPK fraction GFR function e.g., \PBPKfGFR{m}{t} => f^{m}_{GFR}(t)
+\newcommand{\PBPKCL}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKCLSymbol^{#1}_{#2} % 
+    }{ %
+      \fnof{\PBPKCLSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK clearance rate e.g., \PBPKCL{m}{heptatic}{t} => CL^{m}_{heptatic}(t)
+\newcommand{\PBPKPR}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \PBPKPRSymbol^{#1}_{#2} % 
+    }{ %
+      \fnof{\PBPKPRSymbol^{#1}_{#2}}{#3} %
+    } %
+}} % PBPK production rate e.g., \PBPKPR{m}{heptatic}{t} => PR^{m}_{heptatic}(t)
+\newcommand{\PBPKBPR}[1]{\ensuremath{ %
+    \PBPKBPRSymbol^{#1} %
+}} % PBPK Blood:Plasma ratio e.g., \PBPKBPR{m} => B:P^{m}
+\newcommand{\PBPKRBCPR}[1]{\ensuremath{ %
+    \PBPKRBCPRSymbol^{#1} %
+}} % PBPK Red-Blood-Cell:Plasma ratio e.g., \PBPKRBCPR{m} => RBC:P^{m}
+\newcommand{\PBPKIPR}[2]{\ensuremath{ %
+    \PBPKIPRSymbol^{#1}_{fat} %
+}} % PBPK Institial:Plasma ratio e.g., \PBPKISR{m}{fat} => I:P^{m}_{fat}
+\newcommand{\PBPKKp}[2]{\ensuremath{ %
+    K^{#1}_{p_{#2}} % 
+}} % PBPK Kp e.g., \PBPKKp{m}{brain} => K^{m}_{p}_{brain}
+\newcommand{\PBPKKpu}[2]{\ensuremath{ %
+    K^{#1}_{{p,u}_{#2}} %
+}} % PBPK Kp,u e.g., \PBPKKpu{m}{brain} => K^{m}_{p,u}_{brain}
+\newcommand{\PBPKKpuu}[2]{\ensuremath{ %
+    K^{#1}_{{p,uu}_{#2}} %
+}} % PBPK Kp,uu e.g., \PBPKKpuu{m}{brain} => K^{m}_{p,uu}_{brain}
+\newcommand{\PBPKVd}[2]{\ensuremath{ %
+    \ifthenelse{\equal{#2}{}}{ %
+      \PBPKVolumeSymbol^{#1}_{d} % 
+    }{ %
+      \PBPKVolumeSymbol^{#1}_{d_{#2}} % 
+    } %
+}} % PBPK volume of distribution, Vd, symbol e.g., \PBPKVd{m}{i} => V^m_d_i
+\newcommand{\PBPKVp}[1]{\ensuremath{ %
+    \PBPKVolumeSymbol^{#1}_{p} %
+}} % PBPK volume of plasma, Vp, symbol e.g., \PBPKVp{m} => V^m_p
+

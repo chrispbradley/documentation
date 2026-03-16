@@ -39,44 +39,52 @@ density in one domain must be of equal but opposite magnitude to that
 of the other domain. This change in current density must also be
 equation to the current density across the membrane \ie
 \begin{equation}
-  -\divergence{}{\intracellularcurrentdensityvector}=
-  \divergence{}{\extracellularcurrentdensityvector}=
+  -\divergence{}{\intracellularcurrentdensityvector}+\intracellularstimuluscurrent=
+  \divergence{}{\extracellularcurrentdensityvector}+\extracellularstimuluscurrent=
   \membraneareavolumeratio\transmembranecurrent
   \label{eqn:BidomainConservationOfCurrent}
 \end{equation}
-where $\membraneareavolumeratio$ is the surface area of the cell
-membrane to the cell volume ratio and $\transmembranecurrent$ is the
-transmembrane current per unit area.
+where $\intracellularstimuluscurrent$ is any stimulus current per unit
+volume injected into the intracellular space,
+$\extracellularstimuluscurrent$ is any stimulus current per unit
+volume injected into the extracellular space,
+$\membraneareavolumeratio$ is the surface area of the cell membrane to
+the cell volume ratio and $\transmembranecurrent$ is the transmembrane
+current per unit area.
 
 \Eqnref{eqn:BidomainConservationOfCurrent} represents the conservation
 of current densities in the combined domains. Using
 \eqnrefs{eqn:IntraCellularCurrentDensityVectorDefinition}{eqn:ExtraCellularCurrentDensityVectorDefinition}
 we can rewrite \eqnref{eqn:BidomainConservationOfCurrent} as
 \begin{align}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}&=
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}}+\intracellularstimuluscurrent&=
   \membraneareavolumeratio\transmembranecurrent \label{eqn:IntraCellularCurrentDensityConservation} \\
-  \divergence{}{\extracellularconductivitytensor\gradient{}{\extracellularpotential}}&=
-  -\membraneareavolumeratio\transmembranecurrent \label{eqn:ExtraCellularCurrentDensityConservation} 
+  \divergence{}{\sharptensor{\extracellularconductivitytensor}\gradient{}{\extracellularpotential}}+\extracellularstimuluscurrent&=
+  -\membraneareavolumeratio\transmembranecurrent \label{eqn:ExtraCellularCurrentDensityConservation}
 \end{align}
 or
 \begin{equation}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}=
-  -\divergence{}{\extracellularconductivitytensor\gradient{}{\extracellularpotential}}  
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}}=
+  -\divergence{}{\sharptensor{\extracellularconductivitytensor}\gradient{}{\extracellularpotential}}
+  -\intracellularstimuluscurrent-\extracellularstimuluscurrent
 \end{equation}
 
 If we now subtract
-$\divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}$
+$\divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}}$
 from both sides we obtain
 \begin{equation}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}-
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}=
-  -\divergence{}{\extracellularconductivitytensor\gradient{}{\extracellularpotential}}-
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}}-
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}}=
+  -\divergence{}{\sharptensor{\extracellularconductivitytensor}\gradient{}{\extracellularpotential}}-
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}}
+  -\intracellularstimuluscurrent-\extracellularstimuluscurrent
 \end{equation}
 or, using \eqnref{eqn:TransMembraneVoltageDefinition}, we have
 \begin{equation}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}=
-  -\divergence{}{\pbrac{\intracellularconductivitytensor+\extracellularconductivitytensor}\gradient{}{\extracellularpotential}}
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\transmembranevoltage}}=
+  -\divergence{}{\pbrac{\sharptensor{\intracellularconductivitytensor}+
+      \sharptensor{\extracellularconductivitytensor}}\gradient{}{\extracellularpotential}}
+  -\intracellularstimuluscurrent-\extracellularstimuluscurrent
   \label{eqn:FirstBidomainEquation}
 \end{equation}
 
@@ -97,38 +105,39 @@ cell membrane, and $\cellstatevariablevector$ is the vector of cell state variab
 If we now substitute \eqnref{eqn:TransMembraneCurrentDefinition} into
 \eqnref{eqn:IntraCellularCurrentDensityConservation} we obtain
 \begin{equation}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}=
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}}+\intracellularstimuluscurrent=
   \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+
     \fnof{\ioniccurrent}{\cellstatevariablevector,\transmembranevoltage}}
   \label{eqn:IntraCellularCurrentDensityConservationTransmembraneVoltage}
 \end{equation}
 
 Now, if we add
-$\divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}$
+$\divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}}$
 to both sides of
 \eqnref{eqn:IntraCellularCurrentDensityConservationTransmembraneVoltage}
 we obtain
 \begin{equation}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}} +
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} =
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}} +
+  \intracellularstimuluscurrent +
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}} =
   \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+
     \fnof{\ioniccurrent}{\cellstatevariablevector,\transmembranevoltage}} +
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}  
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}}  
 \end{equation}
 or, rearranging, we obtain
 \begin{equation}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}} +
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} -
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} =
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}} +
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}} -
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}} =
   \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+
-    \fnof{\ioniccurrent}{\cellstatevariablevector,\transmembranevoltage}} 
+    \fnof{\ioniccurrent}{\cellstatevariablevector,\transmembranevoltage}} - \intracellularstimuluscurrent 
 \end{equation}
 which, using \eqnref{eqn:TransMembraneVoltageDefinition}, we can rewrite as
 \begin{equation}
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}} +
-  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} =
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\transmembranevoltage}} +
+  \divergence{}{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}} =
   \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+
-    \fnof{\ioniccurrent}{\cellstatevariablevector,\transmembranevoltage}} 
+    \fnof{\ioniccurrent}{\cellstatevariablevector,\transmembranevoltage}} - \intracellularstimuluscurrent 
   \label{eqn:SecondBidomainEquation}
 \end{equation}
 
@@ -136,15 +145,14 @@ which, using \eqnref{eqn:TransMembraneVoltageDefinition}, we can rewrite as
 parabolic, bidomain equation.
 
 Now we can combine
-\eqnrefs{eqn:FirstBidomainEquation}{eqn:SecondBidomainEquation},
-allow for stimulus currents in each domain, and rearrange to obtain the
+\eqnrefs{eqn:FirstBidomainEquation}{eqn:SecondBidomainEquation}, and rearrange to obtain the
 \emph{bidomain equations}. The two bidomain equations are
 \begin{equation}
   \addtolength{\fboxsep}{5pt}
   \boxed{
     \membraneareavolumeratio\membranecapacitance\delby{\transmembranevoltage}{t}-
-    \divergence{}{\pbrac{\tensor{\sigma}_{i}\gradient{}{\transmembranevoltage}}}=
-    \divergence{}{\pbrac{\tensor{\sigma}_{i}\gradient{}{\extracellularpotential}}}-
+    \divergence{}{\pbrac{\sharptensor{\intracellularconductivitytensor}\gradient{}{\transmembranevoltage}}}=
+    \divergence{}{\pbrac{\sharptensor{\intracellularconductivitytensor}\gradient{}{\extracellularpotential}}}-
     \membraneareavolumeratio\fnof{\ioniccurrent}{\cellstatevariablevector,\transmembranevoltage}+
     \intracellularstimuluscurrent
   } \label{eqn:BidomainEquation1}
@@ -153,13 +161,12 @@ and
 \begin{equation}
   \addtolength{\fboxsep}{5pt}
   \boxed{
-    \divergence{}{\pbrac{\pbrac{\tensor{\sigma}_{e}+\tensor{\sigma}_{i}}\gradient{}{\extracellularpotential}}}=
-    -\divergence{}{\pbrac{\tensor{\sigma}_{i}\gradient{}{\transmembranevoltage}}}+\extracellularstimuluscurrent
+    \divergence{}{\pbrac{\pbrac{\sharptensor{\intracellularconductivitytensor}+\sharptensor{\extracellularconductivitytensor}}
+        \gradient{}{\extracellularpotential}}}=
+    -\divergence{}{\pbrac{\sharptensor{\intracellularconductivitytensor}\gradient{}{\transmembranevoltage}}}-
+    \intracellularstimuluscurrent-\extracellularstimuluscurrent
   } \label{eqn:BidomainEquation2}
 \end{equation}
-where $\intracellularstimuluscurrent$ is the intracellular stimulus
-current and $\extracellularstimuluscurrent$ is the extracellular
-stimulus current.
 
 \subsection{Weak formulation}
 \label{subsec:BidomainWeakForm}

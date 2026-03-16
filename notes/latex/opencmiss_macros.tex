@@ -125,7 +125,7 @@
 } %
   
 %
-% Software and systmes
+% Software and systems
 %
 
 \newcommand{\OpenCMISS}{\textsf{OpenCMISS}\xspace}
@@ -210,6 +210,21 @@
   % e.g. \epstexsubfigure{figure}{short caption}{long caption}{label}{scale}
   % or \epstexsubfigure{figure}{}{caption}{label}{}
   
+\newcommand{\gnuplotfigure}[7]{ %
+  \begin{figure}[hbtp]
+    \centering %
+    \ifthenelse{\equal{#7}{}}{ %
+      \gnuplotloadfile[terminal=pslatex,terminaloptions={color size #6,#6 #5}]{#1}}{ %
+      \gnuplotloadfile[terminal=pslatex,terminaloptions={color size #6,#7 #5}]{#1} %
+    } %
+    \ifthenelse{\equal{#2}{}}{ %
+      \caption{#3}}{ %
+      \caption[#2]{#3} %
+    } %
+    \label{#4} %
+  \end{figure}
+} % gnuplot figure e.g. \gnuplotfigure{file}{short caption}{long caption}{label}{fontsize}{gnuplotxsize}{gnuplotysize}
+  
 \newcommand{\gnuplotsubfigure}[8]{ %
   \begin{subfigure}[b]{#5}
     \centering %
@@ -293,6 +308,18 @@
 \newcommand{\Appendrefs}[2]{\Appendrefstwo{#1}{#2}} % Appendices ref.
 \newcommand{\appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices-- ref.
 \newcommand{\Appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices-- ref.
+\newcommand{\assumpref}[1]{Assumption~\ref{#1}} % Assumption reference
+\newcommand{\Assumpref}[1]{Assumption~\ref{#1}} % Assumption reference
+\newcommand{\assumprefstwo}[2]{Assumptions~\ref{#1} and~\ref{#2}} % Assumptions ref. two
+\newcommand{\Assumprefstwo}[2]{Assumptions~\ref{#1} and~\ref{#2}} % Assumptions ref. two
+\newcommand{\assumprefsthree}[3]{Assumptions~\ref{#1}, \ref{#2}, and~\ref{#3}} % Assumptions ref. three
+\newcommand{\Assumprefsthree}[3]{Assumptions~\ref{#1}, \ref{#2}, and~\ref{#3}} % Assumptions ref. three
+\newcommand{\assumprefsfour}[4]{Assumptions~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Assumptions ref. four
+\newcommand{\Assumprefsfour}[4]{Assumptions~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Assumptions ref. four
+\newcommand{\assumprefs}[2]{\assumprefstwo{#1}{#2}} % Assumptions ref.
+\newcommand{\Assumprefs}[2]{\Assumprefstwo{#1}{#2}} % Assumptions ref.
+\newcommand{\assumpthrurefs}[2]{Assumptions~\ref{#1}--\ref{#2}} % Assumptions-- ref.
+\newcommand{\Assumpthrurefs}[2]{Assumptions~\ref{#1}--\ref{#2}} % Assumptions-- ref.
 \newcommand{\bref}[1]{(\ref{#1})} % bracketed () reference
 \newcommand{\baubref}[1]{(\subref{#1})} % bracketed () subreference
 \newcommand{\chapref}[1]{Chapter~\ref{#1}} % Chapter reference
@@ -391,7 +418,7 @@
 %
 \newcommand{\chemical}[1]{\ensuremath{\mathrm{#1}}} % chemical formulae
 \newcommand{\conc}[2]{\ensuremath{ %
-    [\mathrm{#1}]_{#2} %
+    [#1]_{#2} %
     }} % concentration e.g. \conc{Na}{o} => [Na]_o
 \newcommand{\ion}[2]{\ensuremath{\mathrm{{#1}^{#2}}}\xspace} % ion
 \newcommand{\ionCa}{\ion{Ca}{2+}} % calcium ion
@@ -400,19 +427,60 @@
 \newcommand{\ionK}{\ion{K}{+}} % potassium ion
 \newcommand{\ionMg}{\ion{Mg}{2+}} % magnessium ion
 \newcommand{\ionNa}{\ion{Na}{+}} % sodium ion
+\newcommand{\ionGd}{\ion{Gd}{3+}} % gadolinium ion
+\newcommand{\ionGa}{\ion{Ga}{3+}} % gallium ion
 \newcommand{\ionphosphate}{\ion{PO_{4}}{3-}} % phosphate ion
 \newcommand{\ionbicarbonate}{\ion{HCO_{3}}{-}} % bicarbonate ion
+
+%
+% Biology
+%
+
+\newcommand{\gene}[1]{\ensuremath{\mathit{#1}}\xspace} % gene
+\newcommand{\protein}[1]{\ensuremath{\mathbf{\mathit{#1}}}\xspace} % protein
+\newcommand{\enzyme}[1]{\ensuremath{\mathrm{#1}}\xspace} % enzyme
+
+%
+% Numbers 
+%
+\newcommand{\tento}[1]{\ensuremath{ %
+    10^{#1} %
+}} % e.g. \tento{3} ten to the power of 3
+\newcommand{\ttento}[1]{\ensuremath{ %
+    \times \tento{#1} %
+  }\xspace} % e.g. \ttento{5} => times ten the power of 5
+\newcommand{\nttento}[2]{\ensuremath{ %
+    #1\ttento{#2} %
+}} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+
+\newcommand{\first}{\ensuremath{1^{\text{st}}}\xspace} % 1^st e.g. \first => 1^st
+\newcommand{\second}{\ensuremath{2^{\text{nd}}}\xspace} % 2^nd e.g. \second => 2^nd
+\newcommand{\third}{\ensuremath{3^{\text{rd}}}\xspace} % 3^rd e.g. \third => 3^rd
+\newcommand{\nth}[1]{\ensuremath{{#1}^{\text{th}}}\xspace} % ^th e.g. \nth{n} => n^th
 
 %
 % Units
 %
 \newcommand{\units}[1]{\ensuremath{\mathrm{#1}}\xspace} % units
+\newcommand{\nrange}[2]{\ensuremath{ %
+    #1\text{--}#2 %
+}} % number range e.g. \nrange{10}{20} => 10--20
 \newcommand{\nunit}[2]{\ensuremath{ %
     #1~#2 %
     }} % number + unit e.g. \nunit{10}{\m} => 10 m
+\newcommand{\nttunit}[3]{\ensuremath{ %
+    #1\times 10^{#2}~#3 % 
+    }} % number x10^? + unit e.g. \nttunit{10}{3}{\m} => 10x10^-3 m
 \newcommand{\nrunit}[3]{\ensuremath{ %
-    #1\text{--}#2~#3 %
-    }} % number range + unit e.g. \nrunit{10}{20}{\m} => 10--20 m
+    \nrange{#1}{#2}~#3 %
+}} % number range + unit e.g. \nrunit{10}{20}{\m} => 10--20 m
+\newcommand{\unitdimension}[2]{\ensuremath{ %
+    \ifthenelse{\equal{#2}{}}{ %
+      \brac{[}{#1}{]}
+    }{ %
+      {\brac{[}{#1}{]}}^{#2} %
+    } %
+}} % unit dimension e.g., \unitdimension{mm}{2} => [mm]^2
 
 % Length
 \newcommand{\m}{\units{m}} % metres
@@ -422,17 +490,29 @@
 \newcommand{\nm}{\units{nm}} % nanometres
 % Area
 % Volume
-%\newcommand{\L}{\units{L}} % litres
+\newcommand{\Litre}{\units{L}} % litres
 \newcommand{\ml}{\units{ml}} % millilitres
+\newcommand{\mL}{\units{mL}} % millilitres
+\newcommand{\uL}{\units{\mu L}} % microlitres
+\newcommand{\nL}{\units{nL}} % nanolitres
 % Mass
 \newcommand{\kg}{\units{kg}} % kilograms
 \newcommand{\g}{\units{g}} % grams
-\newcommand{\ug}{\units{\mu g}} % micrograms
 \newcommand{\mg}{\units{mg}} % milligrams
+\newcommand{\ug}{\units{\mu g}} % micrograms
+\newcommand{\nanog}{\units{ng}} % nanograms
+\newcommand{\pg}{\units{pg}} % picograms
 % Time
 \newcommand{\s}{\units{s}} % seconds
 \newcommand{\ms}{\units{ms}} % milliseconds
 \newcommand{\us}{\units{\mu s}} % microseconds
+% Amount
+\newcommand{\fmol}{\units{fmol}} % femtomoles
+\newcommand{\pmol}{\units{pmol}} % picomoles
+\newcommand{\nmol}{\units{nmol}} % nanomoles
+\newcommand{\umol}{\units{\mu mol}} % micromoles
+\newcommand{\mmol}{\units{mmol}} % millimoles
+\newcommand{\mol}{\units{mol}} % moles
 % Charge
 \newcommand{\nC}{\units{nC}} % nanocoulombs
 % Current
@@ -443,10 +523,11 @@
 % Temperature
 \newcommand{\degC}{\units{\degree C}} % degrees Celcius
 \newcommand{\degK}{\units{K}} % "degrees" Kelvin
+% Luminous intensity
+\newcommand{\cd}{\units{cd}} % candela
 % Concentration
 \newcommand{\mM}{\units{mM}} % milliMolar
 \newcommand{\nM}{\units{nM}} % nanoMolar
-\newcommand{\mmol}{\units{mmol}} % millimolar
 % Force
 \newcommand{\kN}{\units{kN}} % kilonewtons
 \newcommand{\N}{\units{N}} % Newtons
@@ -484,18 +565,35 @@
 \newcommand{\GB}{\units{GB}} % gigabyte
 \newcommand{\TB}{\units{TB}} % terabyte
 \newcommand{\PB}{\units{PB}} % petabyte
-% Miscellaneou
+% Miscellaneous
 \newcommand{\dB}{\units{dB}} % decibels
 \newcommand{\percent}{\units{\%}} % percent
+\newcommand{\cellunit}{\units{cell}} % cell
+\newcommand{\Da}{\units{Da}} % Dalton
+\newcommand{\kDa}{\units{kDa}} % kilo-Dalton
+\newcommand{\kat}{\units{kat}} % katal (enzyme activity)
+\newcommand{\minute}{\units{min}} % minute
+\newcommand{\minutes}{\units{mins}} % minutes
+\newcommand{\hour}{\units{hour}} % hour
+\newcommand{\hours}{\units{hours}} % hours
+\newcommand{\week}{\units{week}} % week
+\newcommand{\weeks}{\units{weeks}} % weeks
+\newcommand{\nTPM}{\units{nTPM}} % normalised transcripts per million
 
 % Derived units
 %\newcommand{\unitseparator}{\cdot}
 \newcommand{\unitseparator}{\thickspace}
 
 \newcommand{\cmps}{\units{\cm\unitseparator\s^{-1}}} % centimetres/second
-\newcommand{\Hpm}{\units{\H\unitseparator\m^{-1}}} % Henrys/metre
+\newcommand{\Hpm}{\units{\H\unitseparator\m^{-1}}} % Henrys/metre 
 \newcommand{\kNpm}{\units{\kN\unitseparator\m^{-1}}} % kilo-Newtons/metre
 \newcommand{\Lps}{\units{L\unitseparator\s^{-1}}} % litres/second
+\newcommand{\mLpms}{\units{\mL\unitseparator\ms^{-1}}} % milli-litres/milli-second
+\newcommand{\mLpminute}{\units{\mL\unitseparator\minute^{-1}}} % milli-litres/minute
+\newcommand{\uLpminute}{\units{\uL\unitseparator\minute^{-1}}} % microlitres/minute
+\newcommand{\uLpminutepg}{\units{\mL\unitseparator\minute^{-1}}\unitseparator\g^{-1}} % microlitres/minute/g
+\newcommand{\mLpg}{\units{\mL\unitseparator\g^{-1}}} % millilitres/g
+\newcommand{\Lpcell}{\units{L\unitseparator\cellunit^{-1}}} % litres/cell
 \newcommand{\mhom}{\units{\mho\unitseparator\m}} % mho-metres
 \newcommand{\mhopm}{\units{\mho\unitseparator\m^{-1}}} % mho/metres
 \newcommand{\mps}{\units{\m\unitseparator\s^{-1}}} % metres/second
@@ -503,6 +601,7 @@
 \newcommand{\mpsps}{\units{\m\unitseparator\s^{-2}}} % metres/(second^2)
 \newcommand{\mmps}{\units{\mm\unitseparator\s^{-1}}} % millimetres/second
 \newcommand{\mmpms}{\units{\mm\unitseparator\ms^{-1}}} % millimetres/millisecond
+\newcommand{\mmpweek}{\units{\mm\unitseparator\week^{-1}}} % millimetres/week
 \newcommand{\mmtwops}{\units{\mm^{2}\unitseparator\s^{-1}}} % millimetres squared/second
 \newcommand{\mtwo}{\units{\m^{2}}} % metres squared
 \newcommand{\mmtwo}{\units{\mm^{2}}} % millimetres squared
@@ -512,6 +611,7 @@
 \newcommand{\pum}{\units{\um^{-1}}} % per micrometer
 \newcommand{\pmm}{\units{\mm^{-1}}} % per millimeter
 \newcommand{\pms}{\units{\ms^{-1}}} % per millisecond
+\newcommand{\permol}{\units{\mol^{-1}}} % per mole
 \newcommand{\uSpmmpmm}{\units{\uS\unitseparator\mm^{-2}}} % microSiemens per millimeter
 \newcommand{\mSpmm}{\units{\mS\unitseparator\mm^{-1}}} % milliSiemens per millimeter
 \newcommand{\Spm}{\units{S\unitseparator\m^{-1}}} % Siemens per meter
@@ -524,22 +624,42 @@
 \newcommand{\uFpmmpmm}{\units{\mu F\unitseparator\mm^{-2}}} %micro-Farads per millimeter squared
 \newcommand{\uFpcmpcm}{\units{\mu F\unitseparator\cm^{-2}}} %micro-Farads per centimeter squared
 \newcommand{\mmolpL}{\units{\mmol\unitseparator L^{-1}}} %milli-moles per Litre
+\newcommand{\umolpL}{\units{\umol\unitseparator L^{-1}}} %micromoles per Litre
+\newcommand{\mmolpmL}{\units{\mmol\unitseparator\mL^{-1}}} %milli-moles per millilitre
+\newcommand{\umolpmL}{\units{\umol\unitseparator\mL^{-1}}} %micro-moles per millilitre
+\newcommand{\nmolpmL}{\units{\nmol\unitseparator\mL^{-1}}} %nano-moles per millilitre
+\newcommand{\pmolpmL}{\units{\pmol\unitseparator\mL^{-1}}} %pico-moles per millilitre
+\newcommand{\fmolpmL}{\units{\fmol\unitseparator\mL^{-1}}} %femto-moles per millilitre
+\newcommand{\mmolpmg}{\units{\mmol\unitseparator\mg^{-1}}} %milli-moles per milligram
+\newcommand{\umolpmg}{\units{\umol\unitseparator\mg^{-1}}} %micro-moles per milligram
+\newcommand{\nmolpmg}{\units{\nmol\unitseparator\mg^{-1}}} %nano-moles per milligram
+\newcommand{\pmolpmg}{\units{\pmol\unitseparator\mg^{-1}}} %pico-moles per milligram
+\newcommand{\fmolpmg}{\units{\fmol\unitseparator\mg^{-1}}} %femto-moles per milligram
+\newcommand{\pmolpg}{\units{\pmol\unitseparator\g^{-1}}} %picomoles per gram
 \newcommand{\mmolpLpms}{\units{\mmol\unitseparator L^{-1}\unitseparator\ms^{-1}}} %milli-moles per Litre per millisecond
+\newcommand{\umolpLpminute}{\units{\umol\unitseparator L^{-1}\unitseparator\minute^{-1}}} %micro-moles per Litre per minute
+\newcommand{\umolpminute}{\units{\umol\unitseparator\minute^{-1}}} %pico-moles per minute
+\newcommand{\pmolpmLpms}{\units{\pmol\unitseparator\mL^{-1}\unitseparator\ms^{-1}}} %picomoles per millilitre per millisecond
+\newcommand{\pmolpmspmL}{\units{\pmol\unitseparator\ms^{-1}\unitseparator\mL^{-1}}} %picomoles per millisecond per millilitre 
+\newcommand{\pmolpmspmg}{\units{\pmol\unitseparator\ms^{-1}\unitseparator\mg^{-1}}} %picomoles per millisecond per milligram 
+\newcommand{\pmolpms}{\units{\pmol\unitseparator\ms^{-1}}} %pico-moles per millisecond
+\newcommand{\kgpL}{\units{\kg\unitseparator\Litre^{-1}}} %kilograms per Litre
+\newcommand{\gpmL}{\units{\g\unitseparator\mL^{-1}}} %grams per millilitre
+\newcommand{\mgpml}{\units{\mg\unitseparator\ml^{-1}}} %milligrams per millilitre
+\newcommand{\mgpmL}{\units{\mg\unitseparator\mL^{-1}}} %milligrams per millilitre
+\newcommand{\ugpml}{\units{\ug\unitseparator\ml^{-1}}} %micrograms per millilitre
+\newcommand{\ugpmL}{\units{\ug\unitseparator\mL^{-1}}} %micrograms per millilitre
+\newcommand{\ngpml}{\units{\ng\unitseparator\ml^{-1}}} %nanograms per millilitre
+\newcommand{\ngpmL}{\units{\ng\unitseparator\mL^{-1}}} %nanograms per millilitre
+\newcommand{\pgpml}{\units{\pg\unitseparator\ml^{-1}}} %picograms per millilitre
+\newcommand{\pgpmL}{\units{\pg\unitseparator\mL^{-1}}} %picograms per millilitre
 \newcommand{\mVpms}{\units{\mV\unitseparator\ms^{-1}}} %microvolts per millisecond
-\newcommand{\mgpkg}{\units{\mg\unitseparator\kg^{-1}}} % milligram/kilogram
-
-%
-% Numbers
-%
-\newcommand{\tento}[1]{\ensuremath{ %
-    10^{#1} %
-}} % e.g. \tento{3} ten to the power of 3
-\newcommand{\ttento}[1]{\ensuremath{ %
-    \times \tento{#1} %
-  }\xspace} % e.g. \ttento{5} => times ten the power of 5
-\newcommand{\nttento}[2]{\ensuremath{ %
-    #1\ttento{#2} %
-}} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+\newcommand{\mgpmg}{\units{\mg\unitseparator\mg^{-1}}} % milligram per milligram
+\newcommand{\mgpg}{\units{\mg\unitseparator\g^{-1}}} % milligram per gram
+\newcommand{\mgpkg}{\units{\mg\unitseparator\kg^{-1}}} % milligram per kilogram
+\newcommand{\gpg}{\units{\g\unitseparator\g^{-1}}} % gram per gram
+\newcommand{\gpmol}{\units{\g\unitseparator\mol^{-1}}} % gram per mole
+\newcommand{\gppmol}{\units{\g\unitseparator\pmol^{-1}}} % gram per picomole
 
 %
 % Number formats
@@ -697,7 +817,8 @@
 \DeclareMathOperator{\volop}{vol} % volume operator e.g., vol A
 
 %generic operators
-\DeclareMathOperator{\signop}{sign} % sign operator e.g., span A
+\DeclareMathOperator{\signop}{sign} % sign operator e.g., sign A
+\DeclareMathOperator{\modop}{mod} % modulus operator e.g., mod A
 
 % 
 % Brackets
@@ -854,7 +975,8 @@
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
 \newcommand{\derivativeop}[2]{
-  \ifthenelse{\equal{#1}{}}{ %
+characterised as L-cystine
+aminopeptidase (or CAP). Differences in this cleavage result in   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\fnof{D}{#2}}
   }{
     \ensuremath{\fnof{D_{#1}}{#2}} % 
@@ -1081,7 +1203,7 @@
     \sqbrac{#1,#2} %
 }} % Lie bracket e.g.,\liebracket{X}{Y} => [X,Y]
 \newcommand{\liederiv}[2]{\ensuremath{ %
-    \mathcal{L}_{#1} #2
+    \lieoperator_{#1} #2
 }} % Lie derivative e.g., \liederiv{X}{Y} => L_{X} Y
 \newcommand{\limit}[3]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2} #3 %
@@ -1104,7 +1226,6 @@
 \newcommand{\nondimsup}[2]{\ensuremath{ %
     {#1}^{'#2} %
 }} % non dimensional with superscript e.g.,\nondimsup{X}{2} => X^{'2}
-\newcommand{\nth}[1]{\ensuremath{{#1}^{\text{th}}}} % ^th e.g. \nth{n} => n^th
 \newcommand{\orderof}[1]{\ensuremath{\fnof{\mathrm{O}}{#1}}} % order e.g. O(n)
 \newcommand{\pochhammer}[2]{\ensuremath{ %
     \pbrac{#1}_{#2} %
@@ -1180,6 +1301,62 @@ rank(#1,#2)%
     \dprodl{#1}{#2}\,#3 %
 }} % general product e.g. \gprod{a}{b}{c} => prod_a^b c
 
+
+%
+% Function operators
+%
+
+\newcommand{\functionaloperator}[2]{\ensuremath{ %
+    \ifthenelse{\equal{#2}{}}{ %
+      \mathcal{#1}}{ %
+      \brfnof{\mathcal{#1}}{#2} %
+    } %    
+}} % Functional operator e.g., \functionaloperator{L}{x} => L{x}
+\newcommand{\indexfunctionaloperator}[3]{\ensuremath{ %
+    \ifthenelse{\equal{#3}{}}{ %
+      \mathcal{#1}_{#2}}{ %
+      \brfnof{\mathcal{#1}_{#2}}{#3} %
+    } %    
+}} % Indexed functional operator e.g., \functionaloperator{L}{j}{x} => L_j{x}
+\newcommand{\koopmanoperatorsymbol}{\ensuremath{ %
+    K %
+}} % Koopman operator symbol
+\newcommand{\koopmanoperator}[1]{\ensuremath{ %
+    \functionaloperator{\koopmanoperatorsymbol}{#1} %
+}} % Koopman operator i.e., \koopmanoperator{x} => K{x}
+\newcommand{\lieoperatorsymbol}{\ensuremath{ %
+    L %
+}} % Lie operator symbol
+\newcommand{\lieoperator}[1]{\ensuremath{ %
+    \functionaloperator{\lieoperatorsymbol}{#1} %
+}} % Lie operator i.e., \lieoperator{x} => L{x}
+\newcommand{\perronfrobeniusoperatorsymbol}{\ensuremath{ %
+    P %
+}} % Perron-Frobenius operator symbol
+\newcommand{\perronfrobeniusoperator}[1]{\ensuremath{ %
+    \functionaloperator{\perronfrobeniusoperatorsymbol}{#1} %
+}} % Perron-Frobenius operator i.e., \perronfrobeniusoperator => P
+
+\newcommand{\gradientoperatorsymbol}{\ensuremath{ %
+    G %
+}} % Gradient operator symbol
+\newcommand{\gradientoperator}[2]{\ensuremath{ %
+    \indexfunctionaloperator{\gradientoperatorsymbol}{#1}{#2} %
+}} % Gradient operator i.e., \gradientoperator{j}{x} => G_j{x}
+\newcommand{\tildegradientoperator}[2]{\ensuremath{ %
+    \indexfunctionaloperator{\tilde{\gradientoperatorsymbol}}{#1}{#2} %
+}} % Tilde gradient operator i.e., \tildegradientoperator{j}{x} => ~G_j{x}
+\newcommand{\diffusionoperatorsymbol}{\ensuremath{ %
+    D %
+}} % Diffusion operator symbol
+\newcommand{\diffusionoperator}[2]{\ensuremath{ %
+    \indexfunctionaloperator{\diffusionoperatorsymbol}{#1}{#2} %
+}} % Diffusion operator i.e., \diffusionoperator{j}{x} => D_j{x}
+\newcommand{\tildediffusionoperator}[2]{\ensuremath{ %
+    \indexfunctionaloperator{\tilde{\diffusionoperatorsymbol}}{#1}{#2} %
+}} % Tilde diffusion operator i.e., \tildediffusionoperator{j}{x} => ~D_j{x}
+
+
 %
 % Integrals
 %
@@ -1231,7 +1408,7 @@ rank(#1,#2)%
         \fnof{\matr{J}_{#1}}{#2} %
       }
     }
-}} % Jacobain. e.g. \jacobain{a}{b} => J_a(b)
+}} % Jacobian. e.g. \jacobian{a}{b} => J_a(b)
 
 %
 % Special functions and named polynomials
@@ -2420,8 +2597,6 @@ rank(#1,#2)%
 \newcommand{\matr}[1]{\ensuremath{\uppercase{\boldsymbol{#1}}}} % matrix
 % cpb 19/9/96 Changing from \mathbf to \boldsymbol to allow bold greek vectors
 \newcommand{\vect}[1]{\ensuremath{\lowercase{\boldsymbol{#1}}}} % vector
-\newcommand{\normalsymbol}{n} % normal symbol
-\newcommand{\normal}{\vectr{\normalsymbol}} % normal
 
 % Matrix and vector operators
 \newcommand{\determinant}[1]{\det #1} % determinant e.g., \determinant{A} =
@@ -2777,7 +2952,20 @@ rank(#1,#2)%
     \fnof{\nsfsymb}{#1,#2} %
     }} % \nsftwo{n}{i} => Nodal scale factor in two directions at node n and xi
        % direction i
-
+%
+% Other functions
+%
+\newcommand{\greensfunctionsymbol}{\ensuremath{G}} % \greensfunctionsymbol
+\newcommand{\greensfunction}[2]{\ensuremath{ %
+    \ifthenelse{\equal{#1}{}}{ %
+      \fnof{\greensfunctionsymbol}{#1} %
+    }{ %
+      \fnof{\greensfunctionsymbol}{#1,#2} %
+    }
+}} % \greensfunction{x}{x_0} => G(x,x_0)
+\newcommand{\deltafunction}[1]{\ensuremath{ %
+    \fnof{\delta}{#1} %
+}} % \deltafunction{x} => \delta(x)
 
 %%% Local Variables: 
 %%% mode: latex
